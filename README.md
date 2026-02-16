@@ -55,7 +55,7 @@ Since uHAL is a C++ library at its core, binaries for each Python version need t
 Thus if a new Python version is released, a new upload to PyPI is required.
 For this reason, and additional number is added to the IPbus version in `meson.build` which allows to create a new tag without needing a new IPbus version.
 
-The new Python version needs to be added in `pyproject.toml` and `.github/workflows/build_wheels.yml`.
+The new Python version needs to be added in `pyproject.toml` and `.github/workflows/wheels.yml`.
 Once a corresponding tag is created in the repository, a new version is uploaded to PyPI automatically.
 
 ### Updating the IPbus Software
