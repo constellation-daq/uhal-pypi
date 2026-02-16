@@ -1,0 +1,6 @@
+[wrap-file]
+directory = ipbus-software-2.8.22
+source_url = https://github.com/ipbus/ipbus-software/archive/refs/tags/v2.8.22.tar.gz
+source_filename = ipbus-software-2.8.22.tar.gz
+source_hash = c31bf52bc834aef839377d86bc79651d08b943093c542a6b6a12a45cedd7b3ad
+patch_directory = ipbus-software

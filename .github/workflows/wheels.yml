@@ -1,0 +1,74 @@
+name: Build wheels
+
+on: [push, pull_request]
+
+jobs:
+
+  build_wheels:
+    name: Build wheel ${{ matrix.python }}-${{ matrix.buildplat[1] }}-${{ matrix.buildplat[2] }}
+    runs-on: ${{ matrix.buildplat[0] }}
+    strategy:
+      fail-fast: false
+      matrix:
+        buildplat:
+          - [ubuntu-22.04, manylinux_x86_64]
+          - [ubuntu-22.04, musllinux_x86_64]
+          - [ubuntu-22.04-arm, manylinux_aarch64]
+          - [ubuntu-22.04-arm, musllinux_aarch64]
+        python: ["cp311", "cp312", "cp313", "cp314"]
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/cache@v5
+        with:
+          path: subprojects/packagecache
+          key: wraps-${{ hashFiles('subprojects/*.wrap') }}
+
+      - name: Build wheel
+        uses: pypa/cibuildwheel@v3.3.1
+        env:
+          CIBW_BUILD: ${{ matrix.python }}-${{ matrix.buildplat[1] }}
+
+      - uses: actions/upload-artifact@v6
+        with:
+          name: cibw-wheel-${{ matrix.python }}-${{ matrix.buildplat[1] }}-${{ matrix.buildplat[2] }}
+          path: ./wheelhouse/*.whl
+
+  make_sdist:
+    name: Make sdist
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+
+    - uses: actions/cache@v5
+      with:
+        path: subprojects/packagecache
+        key: wraps-${{ hashFiles('subprojects/*.wrap') }}
+
+    - name: Build sdist
+      run: pipx run build --sdist
+
+    - uses: actions/upload-artifact@v6
+      with:
+        name: cibw-sdist
+        path: dist/*.tar.gz
+
+  upload:
+    name: Upload wheels and sdist
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/uhal
+    permissions:
+      id-token: write
+    needs: [build_wheels, make_sdist]
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+    steps:
+    - uses: actions/download-artifact@v7
+      with:
+        pattern: cibw-*
+        path: dist
+        merge-multiple: true
+
+    - uses: pypa/gh-action-pypi-publish@release/v1

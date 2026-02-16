@@ -1,0 +1,6 @@
+[wrap-file]
+directory = boost_1_90_0
+source_url = https://archives.boost.io/release/1.90.0/source-nodocs/boost_1_90_0.tar.bz2
+source_filename = boost-1.90.0.tar.bz2
+source_hash = e3140d87a2907fafa5599fd9d4fe9edee88ee1fbddbc7cd0efde9953e95ce30b
+patch_directory = boost

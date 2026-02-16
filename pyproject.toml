@@ -1,0 +1,39 @@
+# SPDX-FileCopyrightText: 2026 DESY and the Constellation authors
+# SPDX-License-Identifier: CC0-1.0
+
+[build-system]
+build-backend = "mesonpy"
+requires = ["meson-python"]
+
+[project]
+name = "uhal"
+authors = [{name = "IPbus Authors"}]
+description = "uHAL module to interface with IPbus clients"
+readme = "README.md"
+license = {text = " GPL-3.0-only"}
+classifiers = [
+    "Development Status :: 6 - Mature",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: C++",
+    "Operating System :: POSIX :: Linux",
+    "License :: OSI Approved",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+]
+dynamic = ["version"]
+requires-python = ">=3.11"
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/constellation-daq/uhal-pypi"
+
+[tool.meson-python.args]
+setup = ["--wrap-mode=forcefallback"]
+dist = ["--include-subprojects"]
+install = ["--tags=runtime,python-runtime"]
