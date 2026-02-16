@@ -35,5 +35,4 @@ Repository = "https://github.com/constellation-daq/uhal-pypi"
 
 [tool.meson-python.args]
 setup = ["--wrap-mode=forcefallback"]
-dist = ["--include-subprojects"]
 install = ["--tags=runtime,python-runtime"]

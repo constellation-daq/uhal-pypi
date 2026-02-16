@@ -1,5 +1,8 @@
 # uHAL PyPI Distribution
 
+[![PyPI - Version](https://img.shields.io/pypi/v/uhal)](https://pypi.org/project/uhal/)
+[![PyPI - Python Versions](https://img.shields.io/pypi/pyversions/uhal)](https://pypi.org/project/uhal/#files)
+
 This project provides an easy way to install the uHAL Python API from the [IPbus software](https://github.com/ipbus/ipbus-software) via [PyPI](https://pypi.org/).
 This vastly simplies the installation, which is notoriously hard to get right especially with virtual environments.
 
