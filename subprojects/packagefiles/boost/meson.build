@@ -3,7 +3,7 @@ project(
   'cpp',
   version: '1.90.0',
   license: 'BSL-1.0',
-  default_options: ['warning_level=0'],
+  default_options: ['cpp_std=c++20', 'warning_level=0'],
 )
 
 boost_headers_inc = include_directories('.')
@@ -28,7 +28,6 @@ boost_filesystem_lib = static_library(
   'boost_filesystem',
   sources: boost_filesystem_src,
   include_directories: boost_headers_inc,
-  cpp_args: ['-DBOOST_FILESYSTEM_NO_CXX20_ATOMIC_REF'],
 )
 boost_filesystem_dep = declare_dependency(
   link_with: boost_filesystem_lib,
