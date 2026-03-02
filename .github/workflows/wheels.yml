@@ -65,7 +65,7 @@ jobs:
     needs: [build_wheels, make_sdist]
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
     steps:
-    - uses: actions/download-artifact@v7
+    - uses: actions/download-artifact@v8
       with:
         pattern: cibw-*
         path: dist
