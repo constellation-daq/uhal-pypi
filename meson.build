@@ -3,7 +3,7 @@
 
 project(
   'uhal-pypi',
-  version: '2.8.22-1',
+  version: '2.8.22-2',
   license: 'GPL-3.0-only',
 )
 
