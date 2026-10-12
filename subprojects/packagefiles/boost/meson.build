@@ -1,7 +1,7 @@
 project(
   'boost',
   'cpp',
-  version: '1.90.0',
+  version: '1.92.0',
   license: 'BSL-1.0',
   default_options: ['cpp_std=c++20', 'warning_level=0'],
 )
